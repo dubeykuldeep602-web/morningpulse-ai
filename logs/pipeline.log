@@ -1,0 +1,33 @@
+2026-07-27 01:36:59,100 - ai_summarizer - INFO - Reading file:data/raw\news_2026-07-26.json
+2026-07-27 01:37:09,000 - ai_summarizer - INFO - AI Summary saved to data/output/ai_morning_brief.txt
+2026-07-27 01:37:18,584 - news_summarizer - INFO - Reading file from data/raw\news_2026-07-26.json
+2026-07-27 01:37:18,585 - news_summarizer - INFO - Total Articles: 38
+2026-07-27 01:37:18,587 - news_summarizer - INFO - Morning brief saved to data/output/morning_brief.txt
+2026-07-27 01:41:29,712 - main - INFO - ===== Pipeline run started =====
+2026-07-27 01:41:29,713 - news_summarizer - INFO - Reading file from data/raw\news_2026-07-26.json
+2026-07-27 01:41:29,714 - news_summarizer - INFO - Total Articles: 38
+2026-07-27 01:41:29,716 - news_summarizer - INFO - Morning brief saved to data/output/morning_brief.txt
+2026-07-27 01:41:29,718 - main - INFO - Step 1/2 (rule-based summary) succeeded
+2026-07-27 01:41:29,866 - ai_summarizer - INFO - Reading file:data/raw\news_2026-07-26.json
+2026-07-27 01:41:37,860 - ai_summarizer - INFO - AI Summary saved to data/output/ai_morning_brief.txt
+2026-07-27 01:41:37,865 - main - INFO - Step 2/2 (AI summary) succeeded
+2026-07-27 01:41:37,865 - main - INFO - Pipeline completed - AI summary available
+2026-07-27 01:41:37,865 - main - INFO - ===== Pipeline run finished =====
+2026-07-27 02:08:27,718 - whatsapp_sender - INFO - Using AI summary from data/output/ai_morning_brief.txt
+2026-07-27 02:08:28,711 - whatsapp_sender - INFO - WhatsApp message sent successfully (SID: SM6fb48f4daf27d42184b27393a86d017f)
+2026-07-27 02:14:31,501 - ai_summarizer - INFO - Reading file:data/raw\news_2026-07-26.json
+2026-07-27 02:14:42,798 - ai_summarizer - INFO - AI Summary saved to data/output/ai_morning_brief.txt
+2026-07-27 02:16:29,663 - whatsapp_sender - INFO - Using AI summary from data/output/ai_morning_brief.txt
+2026-07-27 02:16:30,503 - whatsapp_sender - INFO - WhatsApp message part 1/1 sent (SID: SM0fcb701383a6d8b769509cac951ee7df)
+2026-07-27 02:40:50,101 - news_fetcher - INFO - Total Articles: 38
+2026-07-27 02:40:50,104 - news_fetcher - INFO - Saved 38 articles to data/raw/news_2026-07-27.json
+2026-07-27 02:40:58,598 - main - INFO - ===== Pipeline run started =====
+2026-07-27 02:40:58,599 - news_summarizer - INFO - Reading file from data/raw\news_2026-07-27.json
+2026-07-27 02:40:58,623 - news_summarizer - INFO - Total Articles: 38
+2026-07-27 02:40:58,625 - news_summarizer - INFO - Morning brief saved to data/output/morning_brief.txt
+2026-07-27 02:40:58,625 - main - INFO - Step 1/2 (rule-based summary) succeeded
+2026-07-27 02:40:58,849 - ai_summarizer - INFO - Reading file:data/raw\news_2026-07-27.json
+2026-07-27 02:41:08,444 - ai_summarizer - INFO - AI Summary saved to data/output/ai_morning_brief.txt
+2026-07-27 02:41:08,452 - main - INFO - Step 2/2 (AI summary) succeeded
+2026-07-27 02:41:08,453 - main - INFO - Pipeline completed - AI summary available
+2026-07-27 02:41:08,453 - main - INFO - ===== Pipeline run finished =====

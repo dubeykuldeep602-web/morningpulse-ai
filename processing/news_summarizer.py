@@ -1,5 +1,12 @@
+import os
+import sys
 import json
 import glob
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config.logger import get_logger
+
+logger = get_logger("news_summarizer")
 
 
 def categorize_news(title):
@@ -7,66 +14,58 @@ def categorize_news(title):
 
     if "modi" in title or "india" in title:
         return "India"
-
     elif "nifty" in title or "sensex" in title or "market" in title or "stock" in title:
         return "Markets"
-
     elif "ai" in title or "google" in title or "microsoft" in title or "openai" in title:
         return "Technology"
-
     elif "sports" in title or "cricket" in title or "football" in title:
         return "Sports"
-
     elif "entertainment" in title or "bollywood" in title or "hollywood" in title:
         return "Entertainment"
-
     else:
         return "Other"
 
 
-# Load news file
-json_files = glob.glob("data/raw/*.json")
+def main():
+    try:
+        json_files = glob.glob("data/raw/*.json")
+        if not json_files:
+            logger.error("No raw news files found in data/raw/")
+            return False
 
-latest_file = max(json_files)
+        latest_file = max(json_files)
+        logger.info(f"Reading file from {latest_file}")
 
-print(f"Reading file from {latest_file}")
+        with open(latest_file, "r", encoding="utf-8") as file:
+            articles = json.load(file)
 
-with open(latest_file, "r", encoding="utf-8") as file:
-    articles = json.load(file)
-    
-print(f"Total Articles: {len(articles)}")
+        logger.info(f"Total Articles: {len(articles)}")
 
+        categories = {
+            "India": [], "Markets": [], "Technology": [],
+            "Sports": [], "Entertainment": [], "Other": []
+        }
 
-# Create categories
-categories = {
-    "India": [],
-    "Markets": [],
-    "Technology": [],
-    "Sports": [],
-    "Entertainment": [],
-    "Other": []
-}
+        for article in articles:
+            category = categorize_news(article["title"])
+            categories[category].append(article["title"])
 
+        morning_brief = "📢 MORNING PULSE\n\n"
+        for category, headlines in categories.items():
+            morning_brief += f"\n=== {category} ===\n"
+            for headline in headlines[:3]:
+                morning_brief += f"• {headline}\n"
 
-# Categorize articles
-for article in articles:
-    category = categorize_news(article["title"])
-    categories[category].append(article["title"])
+        with open("data/output/morning_brief.txt", "w", encoding="utf-8") as file:
+            file.write(morning_brief)
 
+        logger.info("Morning brief saved to data/output/morning_brief.txt")
+        return True
 
-# Create report
-morning_brief = "📢 MORNING PULSE\n\n"
-
-for category, headlines in categories.items():
-
-    morning_brief += f"\n=== {category} ===\n"
-
-    for headline in headlines[:3]:
-        morning_brief += f"• {headline}\n"
+    except Exception as e:
+        logger.error(f"news_summarizer failed: {e}", exc_info=True)
+        return False
 
 
-# Save report
-with open("data/output/morning_brief.txt", "w", encoding="utf-8") as file:
-    file.write(morning_brief)
-
-print("Morning brief saved to data/output/morning_brief.txt")
+if __name__ == "__main__":
+    main()
