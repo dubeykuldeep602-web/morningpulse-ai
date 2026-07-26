@@ -32,4 +32,4 @@ jobs:
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
           TWILIO_WHATSAPP_FROM: ${{ secrets.TWILIO_WHATSAPP_FROM }}
           MY_WHATSAPP_NUMBER: ${{ secrets.MY_WHATSAPP_NUMBER }}
-        run: python whatsaap/whatsapp_sender.py
+        run: python whatsaap/whatsaap_sender.py
